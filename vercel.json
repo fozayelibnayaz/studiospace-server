@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "installCommand": "npm install",
+  "buildCommand": null,
+  "startCommand": "node index.js",
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
