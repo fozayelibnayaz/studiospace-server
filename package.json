@@ -1,0 +1,33 @@
+{
+  "name": "studiospace-server",
+  "version": "1.0.0",
+  "description": "Express + MongoDB backend for StudioSpace — peer-to-peer creative workspace & production studio sharing platform",
+  "main": "index.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "seed": "node seed.js"
+  },
+  "keywords": [
+    "express",
+    "mongodb",
+    "jwt",
+    "studio-booking"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.20.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
