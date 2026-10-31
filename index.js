@@ -70,7 +70,9 @@ app.use((req, res) => {
 /* Central error handler */
 app.use((err, req, res, next) => {
   if (res.headersSent) return next(err);
-  const status = err.status || 500;
+  // CORS origin rejections come through as generic Errors — give them 403.
+  const isCorsError = /^Origin .* is not allowed by CORS/.test(err.message || "");
+  const status = isCorsError ? 403 : err.status || 500;
   res.status(status).json({
     message: err.message || "Internal server error",
   });
