@@ -14,9 +14,6 @@ const uri = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017";
 const dbName = process.env.DB_NAME || "studiospaceDB";
 const OWNER_EMAIL = "seed@example.com";
 
-const img = (id) =>
-  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1200&q=80`;
-
 const studios = [
   {
     title: "Gulshan Glasshouse Photo Studio",
@@ -25,7 +22,7 @@ const studios = [
     securityDeposit: 15000,
     maxCapacity: 15,
     location: "House 48, Road 11, Gulshan 1, Dhaka 1212",
-    image: img("1516035069371-29a1b244cc32"),
+    image: "/studios/gulshan-glasshouse.jpg",
     amenities: [
       "Cyc Wall",
       "Lighting Kit",
@@ -50,7 +47,7 @@ const studios = [
     securityDeposit: 10000,
     maxCapacity: 8,
     location: "Road 27, Dhanmondi, Dhaka 1209",
-    image: img("1471341971476-ae15ff5dd4ea"),
+    image: "/studios/dhanmondi-loft.jpg",
     amenities: [
       "Lighting Kit",
       "Wi-Fi",
@@ -73,7 +70,7 @@ const studios = [
     securityDeposit: 50000,
     maxCapacity: 40,
     location: "Plot 7, Road 11, Banani, Dhaka 1213",
-    image: img("1485846234645-a62644f84728"),
+    image: "/studios/banani-blackbox.jpg",
     amenities: [
       "Green Screen",
       "4K Cameras",
@@ -99,7 +96,7 @@ const studios = [
     securityDeposit: 35000,
     maxCapacity: 30,
     location: "GEC Circle, Khulshi, Chattogram 4000",
-    image: img("1526170375885-4d8ecf77b99f"),
+    image: "/studios/chattogram-stage.jpg",
     amenities: [
       "Lighting Kit",
       "4K Cameras",
@@ -123,7 +120,7 @@ const studios = [
     securityDeposit: 6000,
     maxCapacity: 4,
     location: "Sector 7, Uttara, Dhaka 1230",
-    image: img("1478737270239-2f02b77fc618"),
+    image: "/studios/uttara-podcast.jpg",
     amenities: ["Soundproof", "Mixer", "Wi-Fi", "Air Conditioning"],
     overview:
       "An acoustically treated two-seat lounge tuned for dialogue-first Bangla and English shows. The Shure SM7B chain through a RØDECaster Pro is patched the moment you sit down, and multitrack stems are copied to your drive before you leave. A soft key-light wall makes the room camera-ready for video podcasts, with a second camera angle already framed.",
@@ -140,7 +137,7 @@ const studios = [
     securityDeposit: 5000,
     maxCapacity: 6,
     location: "Zindabazar, Sylhet 3100",
-    image: img("1519677100203-a0e668c92439"),
+    image: "/studios/sylhet-mic-room.jpg",
     amenities: [
       "Soundproof",
       "Mixer",
@@ -163,7 +160,7 @@ const studios = [
     securityDeposit: 12000,
     maxCapacity: 8,
     location: "Block D, Lalmatia, Dhaka 1207",
-    image: img("1598488035139-bdbb2231ce04"),
+    image: "/studios/lalmatia-mix.jpg",
     amenities: ["Soundproof", "Mixer", "Wi-Fi", "Air Conditioning"],
     overview:
       "A mastering-grade mix room built around a large-format console and calibrated nearfields. Ideal for final mix passes, stem export and attended sessions with artists who want to hear the low end properly. The engineer-friendly layout keeps the sweet spot free while you ride a compressor, and reference playback runs on both monitors and a mono Auratone.",
@@ -180,7 +177,7 @@ const studios = [
     securityDeposit: 8000,
     maxCapacity: 6,
     location: "Shakhari Bazar, Old Dhaka 1100",
-    image: img("1505740420928-5e560c06d30e"),
+    image: "/studios/old-dhaka-baul.jpg",
     amenities: ["Soundproof", "Mixer", "Wi-Fi", "Air Conditioning"],
     overview:
       "A warm floating-floor room in Shakhari Bazar with a harmonium, tabla set and baul percussion kept in-house. The treated live room records cleanly at full ensemble volume while the control room stays untouched between sessions. Book it for folk-fusion tracking, acoustic demos or a documentary score that needs the sound of the old city.",
@@ -197,7 +194,7 @@ const studios = [
     securityDeposit: 5000,
     maxCapacity: 18,
     location: "Block C, Mohammadpur, Dhaka 1207",
-    image: img("1513364776144-60967b0f800f"),
+    image: "/studios/mohammadpur-art.jpg",
     amenities: ["Wi-Fi", "Air Conditioning", "Parking", "Crew Lounge"],
     overview:
       "A bright, washable-wall workshop that hosts weekend painting classes, ceramic glazing and zine camps. Easels, aprons and a solvent-safe station come with the room, and the skylit corner gives genuinely usable daylight through the winter. Tables can be arranged classroom-style or as one long communal bench.",
@@ -214,7 +211,7 @@ const studios = [
     securityDeposit: 12000,
     maxCapacity: 10,
     location: "Kolatoli, Cox's Bazar 4700",
-    image: img("1542038784456-1ea8e935640e"),
+    image: "/studios/coxsbazar-sea-light.jpg",
     amenities: [
       "Cyc Wall",
       "Lighting Kit",
@@ -238,7 +235,7 @@ const studios = [
     securityDeposit: 9000,
     maxCapacity: 12,
     location: "Khulshi, Chattogram 4225",
-    image: img("1526170375885-4d8ecf77b99f"),
+    image: "/studios/khulshi-rehearsal.jpg",
     amenities: [
       "Soundproof",
       "Mixer",
@@ -261,7 +258,7 @@ const studios = [
     securityDeposit: 4000,
     maxCapacity: 14,
     location: "Shaheb Bazar, Rajshahi 6100",
-    image: img("1460661419201-fd4cecdf8a8b"),
+    image: "/studios/rajshahi-clay.jpg",
     amenities: ["Wi-Fi", "Parking", "Air Conditioning", "Crew Lounge"],
     overview:
       "A studio-lab for illustrators, printmakers and potters near Shaheb Bazar. Two pottery wheels, a small kiln and a framed printing bay are included with the room, and the north wall of glass gives steady light for life drawing. Great for weekend classes, zine days and gallery prep before a Rajshahi exhibition.",
