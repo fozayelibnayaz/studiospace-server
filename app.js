@@ -16,10 +16,13 @@ const { verifyToken } = require("./middleware/verifyToken");
 
 const app = express();
 
-/** Origins: CLIENT_URL may list several origins, comma separated. */
+/** Origins: CLIENT_URL may list several origins, comma separated.
+ * Trailing slashes are stripped because browsers never send them in the
+ * Origin header — a pasted "https://app.vercel.app/" would otherwise block
+ * every credentialed request in production. */
 const allowedOrigins = (process.env.CLIENT_URL || "http://localhost:3000")
   .split(",")
-  .map((o) => o.trim())
+  .map((o) => o.trim().replace(/\/+$/, ""))
   .filter(Boolean);
 
 app.use(
@@ -46,12 +49,17 @@ app.get("/", (req, res) => {
   res.status(200).send("StudioSpace server is up and running.");
 });
 
-/* Data-API introspection used by the client to stay in sync */
+/* Data-API introspection used by the client to stay in sync.
+ * "database" reports whether the function can actually see MONGODB_URI —
+ * the fastest way to diagnose a deploy that fell back to localhost. */
 app.get("/health", (req, res) => {
   res.status(200).json({
     ok: true,
     categories: CATEGORIES,
     env: process.env.NODE_ENV || "development",
+    database: String(process.env.MONGODB_URI ?? "").trim()
+      ? "configured"
+      : "missing",
   });
 });
 
