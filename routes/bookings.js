@@ -160,6 +160,37 @@ router.get("/", verifyToken, async (req, res) => {
   }
 });
 
+/* GET /bookings/owner?email= — JWT protected.
+ * Host-side listing: every booking made against studios owned by the
+ * token email (used by the Booking Requests management page). */
+router.get("/owner", verifyToken, async (req, res) => {
+  try {
+    const email = String(req.query.email ?? "").trim().toLowerCase();
+
+    if (!email) {
+      return res
+        .status(400)
+        .json({ message: "Email query parameter is required" });
+    }
+    if (req.decoded.email !== email) {
+      return res
+        .status(403)
+        .json({ message: "Forbidden: email mismatch with signed-in user" });
+    }
+
+    const bookings = await getCollection("bookings");
+    const docs = await bookings
+      .find({ ownerEmail: email })
+      .sort({ createdAt: -1 })
+      .toArray();
+    return res.status(200).json(docs);
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ message: "Failed to load booking requests", error: String(err) });
+  }
+});
+
 /* PATCH /bookings/:id/cancel — JWT protected.
  * Only the owner of the booking, and only while status is "Pending". */
 router.patch("/:id/cancel", verifyToken, async (req, res) => {
@@ -198,6 +229,64 @@ router.patch("/:id/cancel", verifyToken, async (req, res) => {
     return res
       .status(500)
       .json({ message: "Failed to cancel booking", error: String(err) });
+  }
+});
+
+/* PATCH /bookings/:id/status — JWT protected, HOST-side.
+ * The studio owner advances a booking's lifecycle after the customer books:
+ *   Pending  → Confirmed   (host accepts the request, e.g. payment settled)
+ *   Confirmed → Completed  (host marks the session as delivered)
+ * Strict transitions: no skips, no owner-side cancellations (customers own
+ * cancelling via /cancel), and 403 for anyone who is not the studio owner. */
+const OWNER_TRANSITIONS = {
+  Pending: ["Confirmed"],
+  Confirmed: ["Completed"],
+};
+
+router.patch("/:id/status", verifyToken, async (req, res) => {
+  try {
+    const nextStatus = String(req.body?.status ?? "").trim();
+
+    const bookings = await getCollection("bookings");
+    const booking = await bookings.findOne({
+      _id: new ObjectId(req.params.id),
+    });
+
+    if (!booking) {
+      return res.status(404).json({ message: "Booking not found" });
+    }
+    if (req.decoded.email !== booking.ownerEmail) {
+      return res
+        .status(403)
+        .json({ message: "Forbidden: only the studio owner manages this booking" });
+    }
+
+    const allowed = OWNER_TRANSITIONS[booking.status] || [];
+    if (!allowed.includes(nextStatus)) {
+      return res.status(409).json({
+        message: `Invalid status change: a ${booking.status} booking can only move to ${
+          allowed.length ? allowed.join(" or ") : "no further states"
+        }`,
+      });
+    }
+
+    await bookings.updateOne(
+      { _id: booking._id },
+      { $set: { status: nextStatus, updatedAt: new Date() } }
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: `Booking ${nextStatus.toLowerCase()}`,
+      status: nextStatus,
+    });
+  } catch (err) {
+    if (isInvalidObjectId(err)) {
+      return res.status(404).json({ message: "Booking not found" });
+    }
+    return res
+      .status(500)
+      .json({ message: "Failed to update booking status", error: String(err) });
   }
 });
 
