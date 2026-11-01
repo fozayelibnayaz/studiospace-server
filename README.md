@@ -2,7 +2,7 @@
 
 Backend for **StudioSpace**, a peer-to-peer creative workspace and production studio sharing platform. It serves the studio catalog, JWT cookie authentication, bookings with server-side double-booking prevention, and a saved-studios wishlist.
 
-**Live API:** <placeholder-vercel-url> · Shared database: `studiospaceDB` (MongoDB Atlas or local)
+**Live API:** https://studiospace-server-xi.vercel.app · Shared database: `studiospaceDB` (MongoDB Atlas or local)
 
 ## Tech stack
 - Express 5 (JavaScript)
@@ -84,6 +84,13 @@ Steps:
 4. Run `npm run seed` once locally against the same Atlas database if the catalog is empty.
 
 Because production serves the client and API on different origins, the JWT cookie is issued `Secure; SameSite=None` — HTTPS only, and `CLIENT_URL` must exactly match the client origin (no trailing slash). Serverless functions open a fresh MongoDB connection per cold instance; `lib/db.js` caches it per warm instance.
+
+### Production troubleshooting
+
+- `connect ECONNREFUSED 127.0.0.1:27017` → the function could not see `MONGODB_URI` and fell back to localhost. Check `GET /health`: it reports `"database": "configured"` only when the variable is non-empty. Env changes only apply to **new** deployments, so redeploy after editing them.
+- `FUNCTION_INVOCATION_TIMEOUT` on the first data request → MongoDB Atlas is unreachable from Vercel (usually the IP access list). Allow `0.0.0.0/0` in Atlas → Network Access, or add Vercel's egress IPs. The driver now fails after 8s instead of hanging.
+- Browser blocks the JWT cookie or CORS rejects the client → `CLIENT_URL` must be the exact origin (no trailing slash). The server strips trailing slashes defensively, but keep the dashboard value clean.
+- `MONGODB_URI`, `ACCESS_TOKEN_SECRET` and other secrets are stored as *sensitive* in Vercel; `vercel env pull` prints them empty by design, so always verify with `/health` instead of the pulled file.
 
 ## Deploy
 
