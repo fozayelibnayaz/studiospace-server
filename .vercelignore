@@ -1,0 +1,9 @@
+node_modules
+.env
+.env.*
+.git
+seed.js
+scripts
+test
+*.log
+README.md
