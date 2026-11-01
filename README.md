@@ -4,6 +4,8 @@ Backend for **StudioSpace**, a peer-to-peer creative workspace and production st
 
 **Live API:** https://studiospace-server-xi.vercel.app · Shared database: `studiospaceDB` (MongoDB Atlas or local)
 
+> **Bangladesh-first data.** `seed.js` ships 12 realistic studios priced in **BDT (৳)** across Dhaka, Chattogram, Sylhet, Cox's Bazar and Rajshahi. The API stores plain numbers, so any BDT amount round-trips untouched; the client renders `৳` via `src/lib/format.js`. Booking totals are computed server-side in the same unit.
+
 ## Tech stack
 - Express 5 (JavaScript)
 - MongoDB native driver (`mongodb` v6)
