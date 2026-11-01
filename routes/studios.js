@@ -82,7 +82,7 @@ function buildStudioDocument(body = {}) {
 router.get("/", async (req, res) => {
   try {
     const studios = await getCollection("studios");
-    const { search, category, sort, limit } = req.query;
+    const { search, category, sort, limit, area } = req.query;
 
     const filter = {};
 
@@ -92,6 +92,14 @@ router.get("/", async (req, res) => {
         "i"
       );
       filter.$or = [{ title: rx }, { location: rx }];
+    }
+    if (area && String(area).trim()) {
+      const rx = new RegExp(
+        String(area).trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
+        "i"
+      );
+      filter.$or = filter.$or || [];
+      filter.$or.push({ location: rx });
     }
 
     if (category && CATEGORIES.includes(String(category))) {
