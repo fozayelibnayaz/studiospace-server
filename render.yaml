@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: studiospace-server
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DB_NAME
+        value: studiospaceDB
+      - key: ACCESS_TOKEN_SECRET
+        generateValue: true
+      - key: MONGODB_URI
+        sync: false # paste the Atlas connection string in the Render dashboard
+      - key: CLIENT_URL
+        sync: false # the deployed client origin, e.g. https://studiospace-client.vercel.app
