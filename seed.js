@@ -1,9 +1,11 @@
 /**
  * StudioSpace seed data — run with:  node seed.js
  *
- * Inserts 12 realistic studios across the exact 5 platform categories
- * with real city locations and verified Unsplash studio imagery.
- * Owner email: seed@example.com  (use it to sign up in the UI and edit them)
+ * 12 realistic, Bangladesh-based studios across the exact 5 platform
+ * categories. Prices are in BDT (৳) and locations span Dhaka, Chattogram,
+ * Sylhet, Cox's Bazar and Rajshahi.
+ *
+ * Owner email: seed@example.com  (sign up with it in the UI to edit them)
  */
 require("dotenv").config();
 const { MongoClient, ServerApiVersion } = require("mongodb");
@@ -17,16 +19,24 @@ const img = (id) =>
 
 const studios = [
   {
-    title: "Aperture Bay Photo Studio",
+    title: "Gulshan Glasshouse Photo Studio",
     category: "Photo Studio",
-    hourlyRate: 65,
-    securityDeposit: 150,
-    maxCapacity: 12,
-    location: "House 34, Road 12, Banani, Dhaka 1213",
+    hourlyRate: 6500,
+    securityDeposit: 15000,
+    maxCapacity: 15,
+    location: "House 48, Road 11, Gulshan 1, Dhaka 1212",
     image: img("1516035069371-29a1b244cc32"),
-    amenities: ["Cyc Wall", "Lighting Kit", "4K Cameras", "Makeup Room", "Air Conditioning", "Wi-Fi"],
+    amenities: [
+      "Cyc Wall",
+      "Lighting Kit",
+      "4K Cameras",
+      "Makeup Room",
+      "Air Conditioning",
+      "Wi-Fi",
+      "Generator Backup",
+    ],
     overview:
-      "A daylight-balanced cyc studio in the heart of Banani purpose-built for fashion lookbooks, product shots and portrait sittings. The 6-metre seamless cyclorama can be repainted in key colours on request, and the in-house Profoto heads plus modifiers mean you travel light. A dedicated makeup room with natural light keeps talent comfortable through back-to-back sessions.",
+      "A daylight-balanced cyc studio in Gulshan 1 built for fashion lookbooks, e-commerce catalogues and portrait sittings. The 5.5-metre seamless cyclorama can be repainted in your brand colours on request, and the in-house Profoto heads mean you travel light. A dedicated makeup room keeps talent comfortable through back-to-back sessions, and the rooftop terrace is yours for golden-hour frames between 4 and 6pm.",
     ownerName: "Rafiq Chowdhury",
     ownerEmail: OWNER_EMAIL,
     ownerPhoto: "https://i.pravatar.cc/150?u=seed-rafiq",
@@ -34,50 +44,48 @@ const studios = [
     totalReviews: 48,
   },
   {
-    title: "Northlight Portrait Loft",
+    title: "Dhanmondi Daylight Loft",
     category: "Photo Studio",
-    hourlyRate: 40,
-    securityDeposit: 100,
+    hourlyRate: 4200,
+    securityDeposit: 10000,
     maxCapacity: 8,
-    location: "Avenue 5, Sector 7, Uttara, Dhaka 1230",
+    location: "Road 27, Dhanmondi, Dhaka 1209",
     image: img("1471341971476-ae15ff5dd4ea"),
-    amenities: ["Lighting Kit", "Wi-Fi", "Parking", "Makeup Room", "Air Conditioning"],
+    amenities: [
+      "Lighting Kit",
+      "Wi-Fi",
+      "Parking",
+      "Makeup Room",
+      "Air Conditioning",
+    ],
     overview:
-      "A cosy second-floor loft with a north-facing window wall that gives soft, even light for portraits and personal branding shoots. Comes with two strobe kits, V-flats and a rolling backdrop library of seven colours. Perfect for creators who want an editorial feel without a big-studio budget.",
+      "A cosy second-floor loft off Road 27 with a north-facing window wall that gives soft, even light through the Dhaka afternoon. Comes with two strobe kits, V-flats and a rolling backdrop library in seven colours. Ideal for personal branding shoots and editorial portraits when you want a lived-in, warm frame without a full production budget.",
     ownerName: "Shireen Akter",
     ownerEmail: OWNER_EMAIL,
     ownerPhoto: "https://i.pravatar.cc/150?u=seed-shireen",
-    rating: 4.7,
+    rating: 4.6,
     totalReviews: 32,
   },
   {
-    title: "FrameGold Production House",
-    category: "Photo Studio",
-    hourlyRate: 85,
-    securityDeposit: 250,
-    maxCapacity: 20,
-    location: "Level 5, Gulshan Tower, Road 41, Gulshan, Dhaka 1212",
-    image: img("1542038784456-1ea8e935640e"),
-    amenities: ["Cyc Wall", "Green Screen", "4K Cameras", "Lighting Kit", "Soundproof", "Air Conditioning", "Parking"],
-    overview:
-      "A multi-zone production floor trusted by Dhaka's leading agencies for campaigns and commercials. Reserve the cyclorama zone, a green screen bay with 4K capture, or the tabletop setup for glassware and liquids — all on the same booking. On-site technicians are available at an hourly add-on.",
-    ownerName: "Tanvir Hasan",
-    ownerEmail: OWNER_EMAIL,
-    ownerPhoto: "https://i.pravatar.cc/150?u=seed-tanvir",
-    rating: 4.8,
-    totalReviews: 61,
-  },
-  {
-    title: "Silver Screen Soundstage",
+    title: "Banani Blackbox Film Stage",
     category: "Film Stage",
-    hourlyRate: 120,
-    securityDeposit: 400,
-    maxCapacity: 30,
-    location: "Plot 8, Tejgaon Industrial Area, Dhaka 1208",
+    hourlyRate: 18000,
+    securityDeposit: 50000,
+    maxCapacity: 40,
+    location: "Plot 7, Road 11, Banani, Dhaka 1213",
     image: img("1485846234645-a62644f84728"),
-    amenities: ["Green Screen", "4K Cameras", "Lighting Kit", "Soundproof", "Air Conditioning", "Parking"],
+    amenities: [
+      "Green Screen",
+      "4K Cameras",
+      "Lighting Kit",
+      "Soundproof",
+      "Air Conditioning",
+      "Parking",
+      "Crew Lounge",
+      "Generator Backup",
+    ],
     overview:
-      "A 4,000 sq ft blacked-out soundstage with rigging grid, silent HVAC and a 12x9m green screen wall. Built for drama blocks, music videos and TVCs. Load-in is street-level through a roller door, and the crew lounge doubles as a wardrobe with changing tents.",
+      "A 6,000 sq ft blacked-out soundstage in Banani with a full rigging grid, silent HVAC and a 12x9m green screen wall. Built for drama blocks, music videos and TVCs that cannot afford to lose a light to load-shedding — the 250 kVA generator keeps the set live. Street-level roller-door load-in, a crew lounge, wardrobe tents and two production offices are included.",
     ownerName: "Nusrat Jahan",
     ownerEmail: OWNER_EMAIL,
     ownerPhoto: "https://i.pravatar.cc/150?u=seed-nusrat",
@@ -85,118 +93,114 @@ const studios = [
     totalReviews: 55,
   },
   {
-    title: "Spotlight Stage One",
+    title: "Chattogram Port Stage",
     category: "Film Stage",
-    hourlyRate: 95,
-    securityDeposit: 300,
-    maxCapacity: 25,
+    hourlyRate: 14500,
+    securityDeposit: 35000,
+    maxCapacity: 30,
     location: "GEC Circle, Khulshi, Chattogram 4000",
     image: img("1526170375885-4d8ecf77b99f"),
-    amenities: ["Lighting Kit", "4K Cameras", "Soundproof", "Wi-Fi", "Parking", "Air Conditioning"],
+    amenities: [
+      "Lighting Kit",
+      "4K Cameras",
+      "Soundproof",
+      "Wi-Fi",
+      "Parking",
+      "Air Conditioning",
+    ],
     overview:
-      "Chattogram's go-to stage for branded content and interview-driven commercials. The staple lighting rig covers a 10x6m performance area with a control station just off set. Includes camera department basics: three bodies, sliders, and a wireless video village.",
+      "Chattogram's go-to stage for branded content and interview-driven commercials. The house rig covers a 10x6m performance area with the control station just off set, and the camera department supplies three bodies, sliders and a wireless video village. Ten minutes from Agrabad, with secure van parking for the whole crew.",
     ownerName: "Imran Kabir",
     ownerEmail: OWNER_EMAIL,
     ownerPhoto: "https://i.pravatar.cc/150?u=seed-imran",
-    rating: 4.6,
+    rating: 4.7,
     totalReviews: 27,
   },
   {
-    title: "Little Berlin Filmbühne",
-    category: "Film Stage",
-    hourlyRate: 140,
-    securityDeposit: 450,
-    maxCapacity: 35,
-    location: "Revaler Str. 40, Friedrichshain, Berlin 10245",
-    image: img("1505373877841-8d25f7d46678"),
-    amenities: ["Green Screen", "Cyc Wall", "Lighting Kit", "Soundproof", "Wi-Fi", "Parking"],
-    overview:
-      "A converted warehouse stage with a variable lighting grid and a restored theatre rig, five minutes from Ostkreuz. Favoured by European indie productions for its generous natural shadow control and pre-lit stand options. German or English-speaking gaffers can be booked with your slot.",
-    ownerName: "Lena Mortensen",
-    ownerEmail: OWNER_EMAIL,
-    ownerPhoto: "https://i.pravatar.cc/150?u=seed-lena",
-    rating: 4.8,
-    totalReviews: 44,
-  },
-  {
-    title: "Echo Chamber Podcast Lounge",
+    title: "Uttara Podcast Booth",
     category: "Podcast Lounge",
-    hourlyRate: 45,
-    securityDeposit: 120,
-    maxCapacity: 6,
-    location: "Road 27, Dhanmondi, Dhaka 1209",
+    hourlyRate: 2200,
+    securityDeposit: 6000,
+    maxCapacity: 4,
+    location: "Sector 7, Uttara, Dhaka 1230",
     image: img("1478737270239-2f02b77fc618"),
     amenities: ["Soundproof", "Mixer", "Wi-Fi", "Air Conditioning"],
     overview:
-      "Acoustically treated two-seat lounge tuned for dialogue-first shows. The Shure SM7B chain through a RØDECaster Pro is ready the moment you sit down, and multitrack stems are delivered to your drive before you leave. A wall of soft light makes the room camera-ready for video podcasts.",
+      "An acoustically treated two-seat lounge tuned for dialogue-first Bangla and English shows. The Shure SM7B chain through a RØDECaster Pro is patched the moment you sit down, and multitrack stems are copied to your drive before you leave. A soft key-light wall makes the room camera-ready for video podcasts, with a second camera angle already framed.",
     ownerName: "Farhana Rahman",
     ownerEmail: OWNER_EMAIL,
     ownerPhoto: "https://i.pravatar.cc/150?u=seed-farhana",
-    rating: 4.9,
+    rating: 4.8,
     totalReviews: 73,
   },
   {
-    title: "Merlion Audio Den",
+    title: "Sylhet Tea Garden Mic Room",
     category: "Podcast Lounge",
-    hourlyRate: 55,
-    securityDeposit: 150,
-    maxCapacity: 10,
-    location: "Tier 4, Gerald Lane, Boat Quay, Singapore 049715",
+    hourlyRate: 1800,
+    securityDeposit: 5000,
+    maxCapacity: 6,
+    location: "Zindabazar, Sylhet 3100",
     image: img("1519677100203-a0e668c92439"),
-    amenities: ["Soundproof", "Mixer", "4K Cameras", "Wi-Fi", "Air Conditioning"],
+    amenities: [
+      "Soundproof",
+      "Mixer",
+      "4K Cameras",
+      "Wi-Fi",
+      "Air Conditioning",
+    ],
     overview:
-      "A four-seat panel room overlooking the Singapore river, designed for conversations that need both broadcast audio and 4K video. Sticky, low-reflection walls plus a quality monitoring chain mean zero surprises at edit time. Book by the hour; first hour includes engineer setup.",
-    ownerName: "Kenji Wee",
+      "A four-seat panel room in Zindabazar with a green-tea-garden view through the live window. Designed for conversations that need broadcast audio and 4K video at once — low-reflection walls, a quality monitoring chain and an engineer for the first hour. Popular with Sylhet's diaspora shows and university podcasts.",
+    ownerName: "Mehjabin Noor",
     ownerEmail: OWNER_EMAIL,
-    ownerPhoto: "https://i.pravatar.cc/150?u=seed-kenji",
-    rating: 4.7,
+    ownerPhoto: "https://i.pravatar.cc/150?u=seed-mehjabin",
+    rating: 4.6,
     totalReviews: 39,
   },
   {
-    title: "Crescent Keys Music Suite",
+    title: "Lalmatia Mix Suite",
     category: "Music Suite",
-    hourlyRate: 50,
-    securityDeposit: 130,
-    maxCapacity: 10,
-    location: "House 61, Road 9, Niketan, Gulshan, Dhaka 1212",
-    image: img("1505740420928-5e560c06d30e"),
-    amenities: ["Soundproof", "Mixer", "Wi-Fi", "Air Conditioning", "Parking"],
-    overview:
-      "A warm, floating-floor rehearsal and tracking room with a Yamaha upright, a drum riser and backline basics. The treated live room records cleanly at band volume, and the separate control room keeps mixer setups untouched between sessions.",
-    ownerName: "Arif Mahmud",
-    ownerEmail: OWNER_EMAIL,
-    ownerPhoto: "https://i.pravatar.cc/150?u=seed-arif",
-    rating: 4.6,
-    totalReviews: 51,
-  },
-  {
-    title: "Lisbon Sunset Mixing Studio",
-    category: "Music Suite",
-    hourlyRate: 70,
-    securityDeposit: 200,
-    maxCapacity: 6,
-    location: "Rua da Rosa 172, Bairro Alto, Lisbon 1200-387",
+    hourlyRate: 4800,
+    securityDeposit: 12000,
+    maxCapacity: 8,
+    location: "Block D, Lalmatia, Dhaka 1207",
     image: img("1598488035139-bdbb2231ce04"),
     amenities: ["Soundproof", "Mixer", "Wi-Fi", "Air Conditioning"],
     overview:
-      "A mastering-grade mix room in Bairro Alto built around a large-format console and calibrated mains. Ideal for final mix passes, stems export and remote attended sessions. The engineer-friendly layout means you can adjust a compressor without leaving the sweet spot.",
-    ownerName: "Sofia Andrade",
+      "A mastering-grade mix room built around a large-format console and calibrated nearfields. Ideal for final mix passes, stem export and attended sessions with artists who want to hear the low end properly. The engineer-friendly layout keeps the sweet spot free while you ride a compressor, and reference playback runs on both monitors and a mono Auratone.",
+    ownerName: "Arif Mahmud",
     ownerEmail: OWNER_EMAIL,
-    ownerPhoto: "https://i.pravatar.cc/150?u=seed-sofia",
+    ownerPhoto: "https://i.pravatar.cc/150?u=seed-arif",
     rating: 4.8,
     totalReviews: 36,
   },
   {
-    title: "Prism Palette Art Workshop",
-    category: "Art Workshop",
-    hourlyRate: 30,
-    securityDeposit: 80,
-    maxCapacity: 16,
-    location: "House 12, Road 5, Block C, Mohammadpur, Dhaka 1207",
-    image: img("1513364776144-60967b0f800f"),
-    amenities: ["Wi-Fi", "Air Conditioning", "Parking", "Makeup Room"],
+    title: "Old Dhaka Baul Room",
+    category: "Music Suite",
+    hourlyRate: 2600,
+    securityDeposit: 8000,
+    maxCapacity: 6,
+    location: "Shakhari Bazar, Old Dhaka 1100",
+    image: img("1505740420928-5e560c06d30e"),
+    amenities: ["Soundproof", "Mixer", "Wi-Fi", "Air Conditioning"],
     overview:
-      "A bright, washable-wall workshop that hosts weekend painting classes, ceramic glazing and craft camps. Easels, aprons and a solvent-safe station are included, and a skylighted corner gives genuinely usable daylight during winter months.",
+      "A warm floating-floor room in Shakhari Bazar with a harmonium, tabla set and baul percussion kept in-house. The treated live room records cleanly at full ensemble volume while the control room stays untouched between sessions. Book it for folk-fusion tracking, acoustic demos or a documentary score that needs the sound of the old city.",
+    ownerName: "Rezaul Karim",
+    ownerEmail: OWNER_EMAIL,
+    ownerPhoto: "https://i.pravatar.cc/150?u=seed-rezaul",
+    rating: 4.7,
+    totalReviews: 51,
+  },
+  {
+    title: "Mohammadpur Art Yard",
+    category: "Art Workshop",
+    hourlyRate: 1600,
+    securityDeposit: 5000,
+    maxCapacity: 18,
+    location: "Block C, Mohammadpur, Dhaka 1207",
+    image: img("1513364776144-60967b0f800f"),
+    amenities: ["Wi-Fi", "Air Conditioning", "Parking", "Crew Lounge"],
+    overview:
+      "A bright, washable-wall workshop that hosts weekend painting classes, ceramic glazing and zine camps. Easels, aprons and a solvent-safe station come with the room, and the skylit corner gives genuinely usable daylight through the winter. Tables can be arranged classroom-style or as one long communal bench.",
     ownerName: "Nadia Islam",
     ownerEmail: OWNER_EMAIL,
     ownerPhoto: "https://i.pravatar.cc/150?u=seed-nadia",
@@ -204,20 +208,67 @@ const studios = [
     totalReviews: 22,
   },
   {
-    title: "Riverfront Riso & Canvas Lab",
-    category: "Art Workshop",
-    hourlyRate: 38,
-    securityDeposit: 90,
-    maxCapacity: 14,
-    location: "Agrabad Commercial Area, Chattogram 4100",
-    image: img("1460661419201-fd4cecdf8a8b"),
-    amenities: ["Wi-Fi", "Parking", "Air Conditioning"],
+    title: "Cox's Bazar Sea Light Studio",
+    category: "Photo Studio",
+    hourlyRate: 5500,
+    securityDeposit: 12000,
+    maxCapacity: 10,
+    location: "Kolatoli, Cox's Bazar 4700",
+    image: img("1542038784456-1ea8e935640e"),
+    amenities: [
+      "Cyc Wall",
+      "Lighting Kit",
+      "Wi-Fi",
+      "Air Conditioning",
+      "Parking",
+      "Generator Backup",
+    ],
     overview:
-      "A studio-lab for illustrators and riso printmakers beside the Karnaphuli riverfront. The lab runs a two-drum riso in six colour profiles, and a framed printing bay for canvas tests. Great for zine days, gallery prep and one-off poster runs.",
-    ownerName: "Rezaul Karim",
+      "A sea-facing studio two minutes from Kolatoli beach, with a 4-metre cyclorama and a wall of glass that turns the Bay of Bengal into your backdrop. Drone batteries charge on-site, sand mats keep the floor clean between beach and set, and the crew kitchen keeps tea coming through long shoot days.",
+    ownerName: "Tanvir Hasan",
     ownerEmail: OWNER_EMAIL,
-    ownerPhoto: "https://i.pravatar.cc/150?u=seed-rezaul",
-    rating: 4.2,
+    ownerPhoto: "https://i.pravatar.cc/150?u=seed-tanvir",
+    rating: 4.9,
+    totalReviews: 61,
+  },
+  {
+    title: "Khulshi Rehearsal Room",
+    category: "Music Suite",
+    hourlyRate: 3200,
+    securityDeposit: 9000,
+    maxCapacity: 12,
+    location: "Khulshi, Chattogram 4225",
+    image: img("1526170375885-4d8ecf77b99f"),
+    amenities: [
+      "Soundproof",
+      "Mixer",
+      "Wi-Fi",
+      "Air Conditioning",
+      "Parking",
+    ],
+    overview:
+      "A band-ready rehearsal room in Khulshi with a floating floor, drum riser and backline basics — bass amp, guitar amp and a tuned upright. The treated live room holds a five-piece at performance volume without upsetting the neighbours, and the separate control room keeps mixer setups untouched between sessions.",
+    ownerName: "Sadia Islam",
+    ownerEmail: OWNER_EMAIL,
+    ownerPhoto: "https://i.pravatar.cc/150?u=seed-sadia",
+    rating: 4.6,
+    totalReviews: 28,
+  },
+  {
+    title: "Rajshahi Clay & Canvas",
+    category: "Art Workshop",
+    hourlyRate: 1400,
+    securityDeposit: 4000,
+    maxCapacity: 14,
+    location: "Shaheb Bazar, Rajshahi 6100",
+    image: img("1460661419201-fd4cecdf8a8b"),
+    amenities: ["Wi-Fi", "Parking", "Air Conditioning", "Crew Lounge"],
+    overview:
+      "A studio-lab for illustrators, printmakers and potters near Shaheb Bazar. Two pottery wheels, a small kiln and a framed printing bay are included with the room, and the north wall of glass gives steady light for life drawing. Great for weekend classes, zine days and gallery prep before a Rajshahi exhibition.",
+    ownerName: "Ayesha Rahman",
+    ownerEmail: OWNER_EMAIL,
+    ownerPhoto: "https://i.pravatar.cc/150?u=seed-ayesha",
+    rating: 4.4,
     totalReviews: 15,
   },
 ];
@@ -233,7 +284,20 @@ async function seed() {
     const studiosCol = db.collection("studios");
 
     // Idempotent: replace previous seed data only.
+    const previous = await studiosCol
+      .find({ ownerEmail: OWNER_EMAIL }, { projection: { _id: 1 } })
+      .toArray();
+    const previousIds = previous.map((s) => String(s._id));
+
     await studiosCol.deleteMany({ ownerEmail: OWNER_EMAIL });
+
+    // Bookings and wishlist rows point at studios by string id; drop the
+    // orphaned ones so My Bookings never links to a room that no longer exists.
+    if (previousIds.length) {
+      await db.collection("bookings").deleteMany({ studioId: { $in: previousIds } });
+      await db.collection("wishlist").deleteMany({ studioId: { $in: previousIds } });
+    }
+
     const now = new Date();
     const docs = studios.map((s, i) => ({
       ...s,
@@ -244,7 +308,7 @@ async function seed() {
     const total = await studiosCol.countDocuments({ ownerEmail: OWNER_EMAIL });
 
     console.log(
-      `Seeded ${result.insertedCount} studios (${total} seed docs total) into ${dbName}.studios`
+      `Seeded ${result.insertedCount} Bangladesh studios (${total} seed docs total) into ${dbName}.studios`
     );
   } catch (err) {
     console.error("Seed failed:", err.message);
